@@ -50,17 +50,17 @@ Or start the server with
 
 
 ## Simulation Logic
-The simulation runs for a full non-leap year (35,040 ticks of 15 minutes).
-Arrival Logic: Uses a probability distribution based on the time of day, adjusted by a user-defined multiplier.
-Consumption Logic: Assigns a random "distance needed" to arriving EVs based on a probability distribution and calculates the required kWh using an 18kWh/100km efficiency (default, adjustable).
-Charging Logic: EVs charge at a maximum of the station's power (defaults to 11kW, adjustable) until their energy needs are met, at which point the charger is freed.
+* The simulation runs for a full non-leap year (35,040 ticks of 15 minutes).
+* Arrival Logic: Uses a probability distribution based on the time of day, adjusted by a user-defined multiplier.
+* Consumption Logic: Assigns a random "distance needed" to arriving EVs based on a probability distribution and calculates the required kWh using an 18kWh/100km efficiency (default, adjustable).
+* Charging Logic: EVs charge at a maximum of the station's power (defaults to 11kW, adjustable) until their energy needs are met, at which point the charger is freed.
 
 ## Project Structure
-src/index: The server and routes are defined here.
-src/services: Contains the core simulation algorithm.
-src/repositories: Data persistence layer (currently In-Memory).
-src/controllers: conrollers for config, result and simulation endpoints.
-src/types: TypeScript interfaces and shared definitions.
+* src/index: The server and routes are defined here.
+* src/services: Contains the core simulation algorithm.
+* src/repositories: Data persistence layer (currently In-Memory).
+* src/controllers: conrollers for config, result and simulation endpoints.
+* src/types: TypeScript interfaces and shared definitions.
 
 ## Future Improvements
 1. Introduce level-based logging
