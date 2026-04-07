@@ -67,3 +67,36 @@ Or start the server with
 2. Specify error types and error responses
 3. Add unit tests
 
+# Frontend dashboard
+
+Minimal Vite + React + TypeScript + Tailwind frontend visualizing the simulator.
+
+Install
+
+```bash
+cd ev-frontend
+npm install
+```
+
+Development
+
+```bash
+npm run dev
+```
+
+- Runs the Vite dev server with HMR (default port 5173; it will pick another port if 5173 is busy).
+
+<br />
+Build (production)
+
+```bash
+npm run build
+```
+
+Preview (serve the built app locally)
+
+```bash
+npm run preview
+```
+
+- `preview` runs `vite preview` which serves the production build from `dist`. By default it serves on port 4173.
