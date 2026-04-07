@@ -1,6 +1,6 @@
-import type { SimulationConfig, SimulationResult } from "../types/index.js";
+import type { SimulationConfig, SimulationConfigPreview, SimulationResult } from "../types/index.js";
 
-export class SimulationService {
+export default class SimulationService {
     private arrivalProbs: Record<number, number> = {
         0: 0.0094, 1: 0.0094, 2: 0.0094, 3: 0.0094, 4: 0.0094, 5: 0.0094,
         6: 0.0094, 7: 0.0094, 8: 0.0283, 9: 0.0283, 10: 0.0566, 11: 0.0566,
@@ -32,7 +32,7 @@ export class SimulationService {
         return entries[entries.length - 1]?.distance || 0;
     }
 
-    public run(config: SimulationConfig): SimulationResult {
+    public run(config: SimulationConfig | SimulationConfigPreview): SimulationResult {
         const ticks = 35040;
         const chargers = new Array(config.numChargers).fill(0);
         const maxEnergyPerTick = config.chargerPowerKW / 4;
@@ -76,7 +76,7 @@ export class SimulationService {
         const theoreticalMaxPower = config.numChargers * config.chargerPowerKW;
 
         return {
-            configId: config.id,
+            configId: (config as SimulationConfig).id || "",
             totalEnergykWh: Number(totalEnergykWh.toFixed(2)),
             theoreticalMaxPowerKW: theoreticalMaxPower,
             actualMaxPowerKW,

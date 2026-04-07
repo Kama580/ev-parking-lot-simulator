@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { SimulationService } from "../services/simulation.js";
+import  SimulationService from "../services/simulation.js";
 import { configRepo, resultRepo } from "../repositories/index.js";
 
 const simService = new SimulationService()

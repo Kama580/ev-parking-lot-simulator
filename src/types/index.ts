@@ -7,6 +7,13 @@ export interface SimulationConfig {
     chargerPowerKW: number;
 }
 
+export interface SimulationConfigPreview {
+    numChargers: number;
+    arrivalMultiplier: number;
+    carConsumption: number;
+    chargerPowerKW: number;
+}
+
 export interface SimulationResult {
     id?: string,
     configId: string;
