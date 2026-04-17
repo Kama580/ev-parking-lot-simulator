@@ -55,7 +55,7 @@ export default class SimulationService {
                     totalEnergykWh += energyProvided;
                 } else {
                     // Decide if a new car arrives now
-                    const hourlyProb = this.arrivalProbs[currentHour] ?? 0 * config.arrivalMultiplier;
+                    const hourlyProb = (this.arrivalProbs[currentHour] ?? 0) * config.arrivalMultiplier;
                     const tickArrivalProb = hourlyProb / 4;
 
                     if (Math.random() < tickArrivalProb) {
