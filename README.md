@@ -8,6 +8,17 @@ Install dependencies:
    ```bash
       npm install
    ```
+
+Setup Environment:
+   ```bash
+      cp .env.example .env
+   ```
+
+Initialize Database: n
+   ```bash
+      npm run db:migrate -- --name init
+   ```
+
 Run in development mode with hot-reload using
    ```bash
       npm run dev

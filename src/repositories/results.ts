@@ -1,31 +1,40 @@
-import type { SimulationResult } from "../types/index.js";
+import { prisma } from "../db.js";
+import type { SimulationResultUncheckedCreateInput } from "../generated/prisma/models.ts";
 
 export class ResultRepository {
-    private nextId = 1;
-
-    private storage: Map<string, SimulationResult> = new Map();
-
-    async create(config: SimulationResult) {
-        const id = this.nextId.toString();
-        this.storage.set(id, {...config, id});
-        this.nextId++
-        return config;
+    async create(data: Omit<SimulationResultUncheckedCreateInput, 'id' | 'createdAt'>) {
+        return await prisma.simulationResult.create({
+            data
+        });
     }
 
     async findById(id: string) {
-        return this.storage.get(id);
+        return await prisma.simulationResult.findUnique({
+            where: { id }
+        });
     }
 
     async findAll() {
-        return Array.from(this.storage.values());
+        return await prisma.simulationResult.findMany({
+            orderBy: { createdAt: 'desc' }
+        });
     }
 
     async findByConfigId(configId: string) {
-        const results = await this.findAll();
-        return results.filter((result) => result.configId === configId)
+        return await prisma.simulationResult.findMany({
+            where: { configId },
+            orderBy: { createdAt: 'desc' }
+        });
     }
 
     async delete(id: string) {
-        return this.storage.delete(id);
+        try {
+            await prisma.simulationResult.delete({
+                where: { id }
+            });
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 }

@@ -1,16 +1,27 @@
 import type { Request, Response } from "express";
-import  SimulationService from "../services/simulation.js";
+import SimulationService from "../services/simulation.js";
 import { configRepo, resultRepo } from "../repositories/index.js";
 
-const simService = new SimulationService()
+const simService = new SimulationService();
 
 export async function runSimulation(req: Request, res: Response) {
-    const config = await configRepo.findById(req.params.id as string);
-    if (!config) return res.status(404).json({ error: "Config not found" });
+    try {
+        const { id } = req.params;
+        const config = await configRepo.findById(id as string);
+        
+        if (!config) {
+            return res.status(404).json({ error: "Configuration not found" });
+        }
 
-    const results = simService.run(config);
+        const results = simService.run(config);
 
-    resultRepo.create(results)
+        const savedResult = await resultRepo.create({
+            ...results
+        });
 
-    res.json(results);
-};
+        res.json(savedResult);
+    } catch (e) {
+        console.error("Simulation Error:", e);
+        res.status(500).json({ error: "An error occurred during the simulation run." });
+    }
+}
