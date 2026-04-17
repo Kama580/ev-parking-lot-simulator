@@ -3,8 +3,10 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "module": "nodenext",
+    "moduleResolution": "NodeNext",
+    "allowJs": true,
     "target": "esnext",
-    "types": [],
+    "types": ["node"],
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
@@ -16,7 +18,8 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist", "ev-frontend"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "ev-frontend", "prisma"]
 }

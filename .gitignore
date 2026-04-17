@@ -1,2 +1,14 @@
-node_modules
-dist
+# Dependency directories
+node_modules/
+dist/
+
+# Auto-generated Prisma Client
+/src/generated/
+
+# Local database files (SQLite)
+*.db
+*.db-journal
+dev.db
+
+# Environment variables
+.env
