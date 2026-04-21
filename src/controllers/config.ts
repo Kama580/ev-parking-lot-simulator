@@ -42,3 +42,17 @@ export async function getConfig(req: Request, res: Response) {
         res.status(500).json({ error: "Failed to fetch configurations" });
     }
 }
+
+export async function getConfigResults(req: Request, res: Response) {
+    try {
+        const { id } = req.params
+        const config = await configRepo.findConfigResults(id as string);
+        if (!config) {
+            return res.status(404).json({ error: "Config not found" });
+        }
+        res.json(config);
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({ error: "Failed to fetch configurations" });
+    }
+}

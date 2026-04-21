@@ -14,6 +14,14 @@ export class ConfigRepository {
         });
     }
 
+    async findConfigResults(id: string) {
+        return await prisma.simulationConfig.findMany({
+            where: { id },
+            select: { results: true },
+            // include: { results: true }
+        })
+    }
+
     async findAll() {
         return await prisma.simulationConfig.findMany({
             orderBy: { createdAt: 'desc' }
